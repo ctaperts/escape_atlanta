@@ -18,7 +18,7 @@ th, td {
     </tr>
     <tr>
     <td class="pull-right">City:</td>
-    <td><p><%= f.input :city, label: false, class: "form-control" %></p></td>
+    <td><p><%= f.input :city, collection: ['Atlanta', 'Decatur'], selected: 'Atlanta', label: false, input_html: { style: 'width:200px;' }, class: "form-control" %></p></td>
     </tr>
     <tr>
     <td class="pull-right">Search distance:</td>
