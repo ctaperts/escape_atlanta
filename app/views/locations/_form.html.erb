@@ -1,12 +1,40 @@
 <%= simple_form_for(@location, html: {class: "form-inline"}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs form-group">
-    <%= f.input :street_address, class: "form-control" %>
-    <%= f.input :city, class: "form-control" %>
-  </div>
+<style>
+th, td {
+  padding-left: 10px;
+}
+.pull-right {
+  padding-top:14px;
+}
+</style>
 
-  <div class="form-actions form-group">
-    <%= f.button :submit, "Escape!" %>
+  <table>
+    <tr>
+  <div class="form-inputs form-group">
+    <td class="pull-right">Street Address:</td>
+    <td><p><%= f.input :street_address, label: false, class: "form-control" %></p></td>
+    </tr>
+    <tr>
+    <td class="pull-right">City:</td>
+    <td><p><%= f.input :city, label: false, class: "form-control" %></p></td>
+    </tr>
+    <tr>
+    <td class="pull-right">Search distance:</td>
+    <td><p><%= f.input :distance, collection: [ ['Quarter Mile', '0.01'], ['Half Mile', '0.02'], ['One Mile', '0.05'] ], selected: ['Half Mile', '0.02'] , label: false, input_html: { min: 0, style: 'width:200px' }, class: "form-control" %></p></td>
+    </tr>
   </div>
+  <tr>
+    <td>
+    </td>
+    <td>
+      <div style="text-align:center;">
+  <div class="form-actions form-group">
+    <p><%= f.button :submit, "Escape!" %></p>
+  </div>
+  </div>
+    </td>
+  </tr>
+  </table>
 <% end %>
