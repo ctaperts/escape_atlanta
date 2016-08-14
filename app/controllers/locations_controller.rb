@@ -21,6 +21,10 @@ class LocationsController < ApplicationController
       is_nearby?(@location.latitude, @location.longitude, bus["LATITUDE"], bus["LONGITUDE"], @location.distance )
     end
 
+    if @buses.empty?
+      redirect_to root_path, notice: "Sorry no escape route found"
+    end
+
   end
 
   # GET /locations/new
