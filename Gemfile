@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
+
 gem 'geocoder'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'

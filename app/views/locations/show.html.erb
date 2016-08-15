@@ -14,6 +14,9 @@
   </small>
 </p>
 
+<div id="map-canvas" style="height:500px; width:500px; margin:0; padding: 0;">
+
+</div>
 
   <h3>The closest route is</h3>
   <% @buses.each do |bus| %>
@@ -64,3 +67,97 @@
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
+<!--
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_api_key'] %>"></script>
+
+<script type="text/javascript">
+  function initialize() {
+    var mapOptions = {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+googe.maps.event.addDomListener(window, 'load', initialize);
+</script>
+-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_api_key'] %>"></script>
+
+<script type="text/javascript">
+  function initialize() {
+    var myLocation = new google.maps.LatLng(<%= @location.latitude %>, <%= @location.longitude   %>)
+    var mapOptions = {
+      center: myLocation,
+      zoom: 15
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    var personIcon = "<%= image_path 'man_icon.png' %>"
+    var busIcon = "<%= image_path 'bus_icon.png' %>"
+    var myAddress = "<%= @location.street_address %>"
+
+    var myMarker = new google.maps.Marker({
+      position: myLocation, 
+      map: map,
+      animation: google.maps.Animation.DROP,
+      title: 'My Location',
+      icon: personIcon
+    });
+
+      var personInfoWindow = 
+	'<div id="content">'+ 
+	  '<h2>My Address' + 
+	  '</h2>' + 
+	  '<div id="bodyContent">' + 
+	    '<p>' + 
+	    myAddress + 
+	    '</p>' + 
+	  '</div>' + 
+	'</div>';
+
+      var personInfoWindow = new google.maps.InfoWindow({
+	content: personInfoWindow
+      });
+
+      google.maps.event.addDomListener(myMarker, 'click', function() {
+	personInfoWindow.open(map, myMarker);
+      });
+
+    var nearbyBuses = <%= raw @buses.to_json %>;
+
+    nearbyBuses.forEach(function (element) {
+      var busLocation = new google.maps.LatLng(element['LATITUDE'], element['LONGITUDE']);
+      var busMarker = new google.maps.Marker({
+	position: busLocation,
+	map: map,
+	animation: google.maps.Animation.DROP,
+	title: element['VEHICLE'],
+	icon: busIcon
+      });
+
+      var contentString = 
+	'<div id="content">'+ 
+	  '<h2>Bus ' + 
+	    element['VEHICLE'] + 
+	    ' ' + 
+	    element['DIRECTION'] + 
+	  '</h2>' + 
+	  '<div id="bodyContent">' + 
+	    '<p>Next Stop: ' + 
+	      element['TIMEPOINT'] + 
+	    '</p>' + 
+	  '</div>' + 
+	'</div>';
+
+      var infoWindow = new google.maps.InfoWindow({
+	content: contentString
+      });
+
+      google.maps.event.addDomListener(busMarker, 'click', function() {
+	infoWindow.open(map, busMarker);
+      });
+    });
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
