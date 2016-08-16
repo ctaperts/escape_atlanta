@@ -8,9 +8,9 @@ module LocationsHelper
     JSON.parse(data)
   end
 
-  def is_nearby?(user_lat, user_long, bus_lat, bus_long, distance)
+  def is_nearby?(user_lat, user_long, bus_lat, bus_long, area_distance)
     #Maximum distance in degrees
-    max_distance = distance.to_f
+    max_distance = area_distance.to_f
 
     difference_latitudes = user_lat - bus_lat.to_f 
     difference_longitues = user_long - bus_long.to_f
