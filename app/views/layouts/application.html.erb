@@ -9,6 +9,35 @@
   </head>
 
   <body>
+<style>
+.image-center {
+  display: block;
+  margin: 0 auto;
+}
+</style>
     <%= yield %>
+
+    <div class="container-fluid" style="margin-top:20px;">
+
+      <div class="row">
+	<div class="col-sm-6 col-md-4">
+	  <a href="http://google.com" target="_blank">
+	    <img src=<%= image_path 'google.jpg' %> width="200px" class="image-center">
+	  </a>
+	</div>
+	<div class="col-sm-6 col-md-4">
+	  <a href="http://apple.com" target="_blank">
+	    <img src=<%= image_path 'itunes.svg' %> width="200px" class="image-center">
+	  </a>
+	</div>
+	<div class="col-sm-12 col-md-4">
+	  <a href="https://github.com/ctaperts" target="_blank">
+	    <img src=<%= image_path 'git.svg' %> class="image-center">
+	  </a>
+	</div>
+      </div>
+    </div>
+    <h3 class="alert-success" id="notice" style="text-align:center;"><%= notice %></h3>
+
   </body>
 </html>
