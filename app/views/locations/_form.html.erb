@@ -8,33 +8,43 @@ th, td {
 .pull-right {
   padding-top:14px;
 }
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
 </style>
 
-  <table>
+  <table class="center">
     <tr>
-  <div class="form-inputs form-group">
-    <td class="pull-right">Street Address:</td>
-    <td><p><%= f.input :street_address, label: false, class: "form-control" %></p></td>
+      <div class="form-inputs form-group">
+	<td class="pull-right">
+	  Street Address:
+	</td>
+	<td>
+	  <p>
+	  <%= f.input :street_address, label: false, class: "form-control" %>
+	  </p>
+	</td>
+	</tr>
+	<tr>
+	<td class="pull-right">City:</td>
+	<td><p><%= f.input :city, collection: ['Atlanta', 'Decatur'], selected: 'Atlanta', label: false, input_html: { style: 'width:200px;' }, class: "form-control" %></p></td>
+	</tr>
+	<tr>
+	<td class="pull-right">Search distance:</td>
+	<td><p><%= f.input :distance, collection: [ ['Quarter Mile', '0.01'], ['Half Mile', '0.02'], ['One Mile', '0.05'] ], selected: ['Half Mile', '0.02'] , label: false, input_html: { min: 0, style: 'width:200px' }, class: "form-control" %></p></td>
+	</tr>
+	</div>
+	<tr>
+	<td>
+	</td>
+	<td>
+	<div style="text-align:center;">
+	  <div class="form-actions form-group">
+	    <p><%= f.button :submit, "Escape!" %></p>
+	  </div>
+	</div>
+      </td>
     </tr>
-    <tr>
-    <td class="pull-right">City:</td>
-    <td><p><%= f.input :city, collection: ['Atlanta', 'Decatur'], selected: 'Atlanta', label: false, input_html: { style: 'width:200px;' }, class: "form-control" %></p></td>
-    </tr>
-    <tr>
-    <td class="pull-right">Search distance:</td>
-    <td><p><%= f.input :distance, collection: [ ['Quarter Mile', '0.01'], ['Half Mile', '0.02'], ['One Mile', '0.05'] ], selected: ['Half Mile', '0.02'] , label: false, input_html: { min: 0, style: 'width:200px' }, class: "form-control" %></p></td>
-    </tr>
-  </div>
-  <tr>
-    <td>
-    </td>
-    <td>
-      <div style="text-align:center;">
-  <div class="form-actions form-group">
-    <p><%= f.button :submit, "Escape!" %></p>
-  </div>
-  </div>
-    </td>
-  </tr>
   </table>
 <% end %>
