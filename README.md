@@ -1,24 +1,5 @@
-# README
+[![Build Status](https://travis-ci.org/ctaperts/escape_atlanta.svg?branch=master)](https://travis-ci.org/ctaperts/escape_atlanta)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Escape Atlanta!
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A ruby app that finds the closest bus in Atlanta
